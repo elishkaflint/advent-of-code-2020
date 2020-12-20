@@ -12,31 +12,30 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TobogganTrajectoryTest {
 
-    private TobogganTrajectory tobogganTrajectory = new TobogganTrajectory(new InputReader());
-    private String testInput = "TobogganTrajectoryTest.txt";
-    private String actualInput = "TobogganTrajectoryActual.txt";
+    private TobogganTrajectory testTobogganTrajectory = new TobogganTrajectory("TobogganTrajectoryTest.txt");
+    private TobogganTrajectory actualTobogganTrajectory = new TobogganTrajectory("TobogganTrajectoryActual.txt");
 
     @Test
     void partOneTest() throws IOException {
-        long result =  tobogganTrajectory.partOne(testInput);
+        long result =  testTobogganTrajectory.partOne();
         assertEquals(7, result);
     }
 
     @Test
     void partOneActual() throws IOException {
-        long result =  tobogganTrajectory.partOne(actualInput);
+        long result =  actualTobogganTrajectory.partOne();
         assertEquals(234, result);
     }
 
     @Test
     void partTwoTest() throws IOException {
-        long result =  tobogganTrajectory.partTwo(testInput);
+        long result =  testTobogganTrajectory.partTwo();
         assertEquals(336, result);
     }
 
     @Test
     void partTwo() throws IOException {
-        long result =  tobogganTrajectory.partTwo(actualInput);
+        long result =  actualTobogganTrajectory.partTwo();
         // had to start using long here, otherwise the answer was incorrect and also too big for integer
         assertEquals(5813773056L, result);
     }

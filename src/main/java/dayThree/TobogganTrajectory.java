@@ -1,31 +1,25 @@
 package dayThree;
 
-import input.InputReader;
 import models.Coordinates;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+import static input.InputReader.getMatrix;
+
 public class TobogganTrajectory {
 
-    private final InputReader inputReader;
+    private final String[][] matrix;
 
-    public TobogganTrajectory(InputReader inputReader) {
-        this.inputReader = inputReader;
+    public TobogganTrajectory(String filename) {
+        this.matrix = getMatrix(filename);
     }
 
-    public long partOne(String filename) throws IOException {
-
-        String[][] map = inputReader.getMap(filename);
-
-        return getCount(map, 1, 3);
+    public long partOne() {
+        return getCount(matrix, 1, 3);
     }
 
-    public long partTwo(String filename) throws IOException {
-
-        String[][] map = inputReader.getMap(filename);
-
+    public long partTwo() {
         List<Coordinates> coordinates = Arrays.asList(
                 new Coordinates(1,1),
                 new Coordinates(1,3),
@@ -33,22 +27,20 @@ public class TobogganTrajectory {
                 new Coordinates(1,7),
                 new Coordinates(2,1)
         );
-
-        return coordinates.stream().map(coordinate -> getCount(map, coordinate.getX(), coordinate.getY())).reduce(1L, (a, b) -> a * b);
-
+        return coordinates.stream().map(coordinate -> getCount(matrix, coordinate.getX(), coordinate.getY())).reduce(1L, (a, b) -> a * b);
     }
 
-    private long getCount(String[][] map, int xSlope, int ySlope) {
+    private long getCount(String[][] matrix, int xSlope, int ySlope) {
 
         int count = 0;
         int x = 0;
         int y = 0;
 
-        while(x < map.length) {
-            if(map[x][y].equals("#")) {
+        while(x < matrix.length) {
+            if(matrix[x][y].equals("#")) {
                 count++;
             }
-            y = getY(y, ySlope, map[0].length);
+            y = getY(y, ySlope, matrix[0].length);
             x = getX(x, xSlope);
         }
 

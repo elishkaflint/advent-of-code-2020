@@ -2,23 +2,17 @@ package input;
 
 import models.Password;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class InputReader {
 
-    public List<Integer> getIntegerList(String filename) {
+    public static List<Integer> getIntegerList(String filename) {
 
         List<Integer> result = new ArrayList<>();
 
@@ -34,13 +28,13 @@ public class InputReader {
 
     }
 
-    public List<Password> getPasswordList(String filename) {
+    public static List<Password> getPasswordList(String filename) {
 
         List<Password> result = new ArrayList<>();
 
         try {
             Stream<String> lines = Files.lines(Paths.get(filename));
-            result = lines.map(this::getPassword).collect(Collectors.toList());
+            result = lines.map(InputReader::getPassword).collect(Collectors.toList());
             lines.close();
         } catch (IOException e) {
             System.out.println("error when reading "+filename);
@@ -50,7 +44,7 @@ public class InputReader {
 
     }
 
-    public List<String> getStringList(String filename) throws IOException {
+    public static List<String> getStringList(String filename) {
 
         List<String> result = new ArrayList<>();
 
@@ -65,7 +59,7 @@ public class InputReader {
         return result;
     }
 
-    public String[][] getMap(String filename) throws IOException {
+    public static String[][] getMatrix(String filename) {
 
         List<String> stringList = getStringList(filename);
         String[] rows = stringList.toArray(new String[0]);
@@ -77,12 +71,9 @@ public class InputReader {
         }
 
         return matrix;
-
-
-
     }
 
-    private Password getPassword(String string) {
+    private static Password getPassword(String string) {
 
         String[] arr = string.split(" ");
 
@@ -95,7 +86,6 @@ public class InputReader {
         String password = arr[2];
 
         return new Password(letter, min, max, password);
-
     }
 
 }

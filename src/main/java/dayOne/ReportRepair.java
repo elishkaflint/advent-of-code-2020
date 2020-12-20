@@ -1,20 +1,18 @@
 package dayOne;
 
-import input.InputReader;
-
 import java.util.List;
+
+import static input.InputReader.getIntegerList;
 
 public class ReportRepair {
 
-    private final InputReader inputReader;
+    private final List<Integer> integerList;
 
-    public ReportRepair(InputReader inputReader) {
-        this.inputReader = inputReader;
+    public ReportRepair(String filename) {
+        this.integerList = getIntegerList(filename);
     }
 
-    public Integer partOne(String filename) {
-
-        List<Integer> integerList = inputReader.getIntegerList(filename);
+    public Integer partOne() {
 
         for(int j : integerList) {
             for(int k : integerList) {
@@ -28,9 +26,7 @@ public class ReportRepair {
 
     }
 
-    public Integer partTwo(String filename) {
-
-        List<Integer> integerList = inputReader.getIntegerList(filename);
+    public Integer partTwo() {
 
         for(int j : integerList) {
             for(int k : integerList) {

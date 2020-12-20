@@ -1,38 +1,36 @@
 package dayTwo;
 
-import input.InputReader;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class PasswordPhilosophyTest {
 
-    private PasswordPhilosophy passwordPhilosophy = new PasswordPhilosophy(new InputReader());
-    private String testInput = "PasswordPhilosophyTest.txt";
-    private String actualInput = "PasswordPhilosophyActual.txt";
+    private PasswordPhilosophy testPasswordPhilosophy = new PasswordPhilosophy("PasswordPhilosophyTest.txt");
+    private PasswordPhilosophy actualPasswordPhilosophy = new PasswordPhilosophy("PasswordPhilosophyActual.txt");
 
 
     @Test
     void partOneTest() {
-        Integer result =  passwordPhilosophy.partOne(testInput);
+        Integer result =  testPasswordPhilosophy.partOne();
         assertEquals(2, result.doubleValue());
     }
 
     @Test
     void partOneActual() {
-        Integer result =  passwordPhilosophy.partOne(actualInput);
+        Integer result =  actualPasswordPhilosophy.partOne();
         assertEquals(524, result.doubleValue());
     }
 
     @Test
     void partTwoTest() {
-        Integer result =  passwordPhilosophy.partTwo(testInput);
+        Integer result =  testPasswordPhilosophy.partTwo();
         assertEquals(1, result.doubleValue());
     }
 
     @Test
     void partTwoActual() {
-        Integer result =  passwordPhilosophy.partTwo(actualInput);
+        Integer result =  actualPasswordPhilosophy.partTwo();
         assertEquals(485, result.doubleValue());
     }
 }

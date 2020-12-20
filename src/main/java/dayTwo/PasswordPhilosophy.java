@@ -1,21 +1,20 @@
 package dayTwo;
 
-import input.InputReader;
 import models.Password;
 
 import java.util.List;
 
+import static input.InputReader.getPasswordList;
+
 public class PasswordPhilosophy {
 
-    private final InputReader inputReader;
+    private final List<Password> passwords;
 
-    public PasswordPhilosophy(InputReader inputReader) {
-        this.inputReader = inputReader;
+    public PasswordPhilosophy(String filename) {
+        this.passwords = getPasswordList(filename);
     }
 
-    public Integer partOne(String filename) {
-
-        List<Password> passwords = inputReader.getPasswordList(filename);
+    public Integer partOne() {
 
         int countValidPassword = 0;
 
@@ -34,9 +33,7 @@ public class PasswordPhilosophy {
         return letterCount >= password.getMin() && letterCount <= password.getMax();
     }
 
-    public Integer partTwo(String filename) {
-
-        List<Password> passwords = inputReader.getPasswordList(filename);
+    public Integer partTwo() {
 
         int countValidPassword = 0;
 

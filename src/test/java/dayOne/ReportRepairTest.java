@@ -1,37 +1,35 @@
 package dayOne;
 
-import input.InputReader;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ReportRepairTest {
 
-    private ReportRepair reportRepair = new ReportRepair(new InputReader());
-    private String testInput = "ReportRepairTest.txt";
-    private String actualInput = "ReportRepairActual.txt";
+    private ReportRepair testReportRepair = new ReportRepair("ReportRepairTest.txt");
+    private ReportRepair actualReportRepair = new ReportRepair("ReportRepairActual.txt");
 
     @Test
     void partOneTest() {
-        Integer result =  reportRepair.partOne(testInput);
+        Integer result =  testReportRepair.partOne();
         assertEquals(514579, result.doubleValue());
     }
 
     @Test
     void partOneActual() {
-        Integer result =  reportRepair.partOne(actualInput);
+        Integer result =  actualReportRepair.partOne();
         assertEquals(388075, result.doubleValue());
     }
 
     @Test
     void partTwoTest() {
-        Integer result =  reportRepair.partTwo(testInput);
+        Integer result =  testReportRepair.partTwo();
         assertEquals(241861950, result.doubleValue());
     }
 
     @Test
     void partTwoActual() {
-        Integer result =  reportRepair.partTwo(actualInput);
+        Integer result =  actualReportRepair.partTwo();
         assertEquals(293450526, result.doubleValue());
     }
 }
