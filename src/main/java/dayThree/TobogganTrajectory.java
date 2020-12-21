@@ -38,13 +38,17 @@ public class TobogganTrajectory {
             if(matrix[x][y].equals("#")) {
                 count++;
             }
-            y = getY(y, ySlope, matrix[0].length);
             x = getX(x, xSlope);
+            y = getY(y, ySlope, matrix[0].length);
         }
 
         System.out.println("xslope ["+xSlope+"] yslope ["+ySlope+"] count ["+count+"]");
 
         return count;
+    }
+
+    private int getX(int x, int slope) {
+        return x + slope;
     }
 
     private int getY(int y, int slope, int length) {
@@ -54,10 +58,6 @@ public class TobogganTrajectory {
         } else {
             return tempPosition;
         }
-    }
-
-    private int getX(int x, int slope) {
-        return x + slope;
     }
 
 }
