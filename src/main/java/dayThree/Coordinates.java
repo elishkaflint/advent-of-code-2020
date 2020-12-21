@@ -1,4 +1,4 @@
-package models;
+package dayThree;
 
 public class Coordinates {
 

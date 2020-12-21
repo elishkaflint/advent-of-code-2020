@@ -9,7 +9,6 @@ class PasswordPhilosophyTest {
     private PasswordPhilosophy testPasswordPhilosophy = new PasswordPhilosophy("PasswordPhilosophyTest.txt");
     private PasswordPhilosophy actualPasswordPhilosophy = new PasswordPhilosophy("PasswordPhilosophyActual.txt");
 
-
     @Test
     void partOneTest() {
         Integer result =  testPasswordPhilosophy.partOne();

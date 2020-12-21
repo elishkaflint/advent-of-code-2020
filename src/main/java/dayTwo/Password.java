@@ -1,4 +1,4 @@
-package models;
+package dayTwo;
 
 public class Password {
 

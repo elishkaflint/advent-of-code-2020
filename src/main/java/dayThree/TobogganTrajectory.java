@@ -1,7 +1,5 @@
 package dayThree;
 
-import models.Coordinates;
-
 import java.util.Arrays;
 import java.util.List;
 

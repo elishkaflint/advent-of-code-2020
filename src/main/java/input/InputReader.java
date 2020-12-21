@@ -1,12 +1,15 @@
 package input;
 
-import models.Password;
+import dayTwo.Password;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -59,6 +62,33 @@ public class InputReader {
         return result;
     }
 
+    public static List<String> getStringListWithEmptyLines(String filename) {
+
+        List<String> stringList = new ArrayList<>();
+
+        try {
+            Scanner scanner = new Scanner(new File(filename));
+            StringBuilder sb = new StringBuilder();
+
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                if (!line.isEmpty()) {
+                    sb.append(line).append(" ");
+                } else {
+                    stringList.add(sb.toString());
+                    sb.setLength(0);
+                }
+            }
+
+            stringList.add(sb.toString());
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("error when reading "+filename);
+        }
+
+        return stringList;
+    }
+
     public static String[][] getMatrix(String filename) {
 
         List<String> stringList = getStringList(filename);
@@ -87,5 +117,6 @@ public class InputReader {
 
         return new Password(letter, min, max, password);
     }
+
 
 }

@@ -11,7 +11,9 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -108,5 +110,33 @@ public class FileReading {
         lines.close();
 
         assertEquals("hello world", data);
+    }
+
+    @Test
+    public void withScanner() {
+
+        List<String> stringList = new ArrayList<>();
+
+        InputStream is = this.getClass().getResourceAsStream("/scannerTestFile.txt");
+        Scanner scanner = new Scanner(is);
+
+        StringBuilder sb = new StringBuilder();
+
+        while(scanner.hasNextLine()) {
+           String line = scanner.nextLine();
+           if(!line.isEmpty()) {
+               sb.append(line).append(" ");
+           } else {
+               stringList.add(sb.toString());
+               sb.setLength(0);
+           }
+        }
+
+        stringList.add(sb.toString());
+
+        for(String string : stringList) {
+            System.out.println(string);
+        }
+
     }
 }

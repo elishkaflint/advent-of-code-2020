@@ -1,7 +1,5 @@
 package dayTwo;
 
-import models.Password;
-
 import java.util.List;
 
 import static input.InputReader.getPasswordList;
