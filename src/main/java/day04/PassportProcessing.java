@@ -8,14 +8,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-import static utils.Utils.getStringListWithEmptyLines;
+import static utils.Utils.getGroupedLines;
 
 public class PassportProcessing {
 
     private final List<String> passportList;
 
     public PassportProcessing(String filename) {
-        this.passportList = getStringListWithEmptyLines(filename);
+        this.passportList = getGroupedLines(filename);
     }
 
     public int partOne() {

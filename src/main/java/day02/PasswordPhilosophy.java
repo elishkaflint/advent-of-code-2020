@@ -1,65 +1,87 @@
-    package day02;
+package day02;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import static utils.Utils.getLines;
 
 public class PasswordPhilosophy {
 
-    private Pattern pattern = Pattern.compile("(\\d+)-(\\d+) (\\w): ([a-z]*)");
-
-    private final List<String> lines;
+    private final List<Password> passwords;
 
     public PasswordPhilosophy(String filename) {
-        this.lines = getLines(filename);
+        this.passwords = getLines(filename).stream().map(this::getPassword).collect(Collectors.toList());
     }
 
-    public int partOne() {
-
-        int matches = 0;
-
-        for(String line : lines) {
-
-            Matcher matcher = pattern.matcher(line);
-            if(matcher.find()) {
-
-                int min = Integer.parseInt(matcher.group(1));
-                int max = Integer.parseInt(matcher.group(2));
-                String req = matcher.group(3);
-                String password = matcher.group(4);
-
-                long letterCount = Arrays.stream(password.split("")).filter(letter -> letter.equals(req)).count();
-                if(min <= letterCount && letterCount <= max) matches++;
+    public Integer partOne() {
+        int countValidPassword = 0;
+        for (Password password : passwords) {
+            if(isValid(password)) {
+                countValidPassword++;
             }
         }
-        return matches;
+        return countValidPassword;
     }
 
-    public int partTwo() {
+    private boolean isValid(Password password) {
+        long letterCount = password.getEntry().chars().filter(ch -> ch == password.getLetter()).count();
+        return letterCount >= password.getMin() && letterCount <= password.getMax();
+    }
 
-        int matches = 0;
-
-        for(String line : lines) {
-
-            Matcher matcher = pattern.matcher(line);
-            if (matcher.find()) {
-
-                int pos1 = Integer.parseInt(matcher.group(1));
-                int pos2 = Integer.parseInt(matcher.group(2));
-                String req = matcher.group(3);
-                String password = matcher.group(4);
-
-                if(password.split("")[pos1 - 1].equals(req) ^ password.split("")[pos2 - 1].equals(req)) {
-                    matches++;
-                }
+    public Integer partTwo() {
+        int countValidPassword = 0;
+        for (Password password : passwords) {
+            if(isValidComplex(password)) {
+                countValidPassword++;
             }
         }
-
-        return matches;
-
+        return countValidPassword;
     }
 
+    private boolean isValidComplex(Password password) {
+        char charAtMin = password.getEntry().charAt(password.getMin() - 1);
+        char charAtMax = password.getEntry().charAt(password.getMax() - 1);
+        return charAtMin == password.getLetter() ^ charAtMax == password.getLetter();
+    }
+
+    private PasswordPhilosophy.Password getPassword(String string) {
+        String[] arr = string.split(" ");
+        String[] minMax = arr[0].split("-");
+        int min = Integer.parseInt(minMax[0]);
+        int max = Integer.parseInt(minMax[1]);
+        char letter = arr[1].charAt(0);
+        String password = arr[2];
+        return new PasswordPhilosophy.Password(letter, min, max, password);
+    }
+
+    public class Password {
+
+        private final char letter;
+        private final int min;
+        private final int max;
+        private final String entry;
+
+        public Password(char letter, int min, int max, String entry) {
+            this.letter = letter;
+            this.min = min;
+            this.max = max;
+            this.entry = entry;
+        }
+
+        public char getLetter() {
+            return letter;
+        }
+
+        public int getMin() {
+            return min;
+        }
+
+        public int getMax() {
+            return max;
+        }
+
+        public String getEntry() {
+            return entry;
+        }
+    }
 }

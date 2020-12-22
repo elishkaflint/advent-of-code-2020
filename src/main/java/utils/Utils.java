@@ -44,9 +44,9 @@ public class Utils {
         return lines;
     }
 
-    public static List<String> getStringListWithEmptyLines(String filename) {
+    public static List<String> getGroupedLines(String filename) {
 
-        List<String> stringList = new ArrayList<>();
+        List<String> groupedLines = new ArrayList<>();
 
         try {
             Scanner scanner = new Scanner(new File(filename));
@@ -57,18 +57,18 @@ public class Utils {
                 if (!line.isEmpty()) {
                     sb.append(line).append(" ");
                 } else {
-                    stringList.add(sb.toString());
+                    groupedLines.add(sb.toString());
                     sb.setLength(0);
                 }
             }
+            groupedLines.add(sb.toString());
 
-            stringList.add(sb.toString());
             scanner.close();
         } catch (FileNotFoundException e) {
             System.out.println("error when reading "+filename);
         }
 
-        return stringList;
+        return groupedLines;
     }
 
 }

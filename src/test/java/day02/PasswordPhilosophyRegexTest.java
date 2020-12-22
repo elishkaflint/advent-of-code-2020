@@ -2,12 +2,12 @@ package day02;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-class PasswordPhilosophyTest {
+class PasswordPhilosophyRegexTest {
 
-    private PasswordPhilosophy testPasswordPhilosophy = new PasswordPhilosophy("src/main/resources/day02/test.txt");
-    private PasswordPhilosophy actualPasswordPhilosophy = new PasswordPhilosophy("src/main/resources/day02/actual.txt");
+    private PasswordPhilosophyRegex testPasswordPhilosophy = new PasswordPhilosophyRegex("src/main/resources/day02/test.txt");
+    private PasswordPhilosophyRegex actualPasswordPhilosophy = new PasswordPhilosophyRegex("src/main/resources/day02/actual.txt");
 
     @Test
     void partOneTest() {
